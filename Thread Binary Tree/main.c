@@ -33,7 +33,7 @@ TreeNode* find_successor(TreeNode* p)
 	return q;
 }
 
-// 밑에 현재 다음 노드를 찾는 형식으로 작동중 수정해야됨
+// 밑에 현재 다음 노드를 찾는 형식으로 작동중 수정
 TreeNode* parent(TreeNode* child)
 {
 	TreeNode* q = child->right;
