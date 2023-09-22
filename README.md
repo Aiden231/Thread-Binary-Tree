@@ -1,2 +1,2 @@
 # Thread Binary Tree
-![](./img/result.png)
+![](./result.png)
