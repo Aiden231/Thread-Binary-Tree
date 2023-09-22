@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-//TreeNode ±¸Á¶Ã¼
+//TreeNode êµ¬ì¡°ì²´
 typedef struct treeNode {
 	int data;
 	struct treeNode* left, * right;
 	int is_thread;
 }TreeNode;
 
-// ½º·¹µå ÀÌÁø Æ®¸® »ı¼º
+// ìŠ¤ë ˆë“œ ì´ì§„ íŠ¸ë¦¬ ìƒì„±
 TreeNode n11 = { 11,NULL,NULL,0 };
 TreeNode n10 = { 10,NULL,NULL,0 };
 TreeNode n9 = { 9, &n10,&n11, 0 };
@@ -20,9 +20,9 @@ TreeNode n3 = { 3,&n4,&n5,0 };
 TreeNode n2 = { 2,&n3,&n6,0 };
 TreeNode n1 = { 1,&n2,&n7,0 };
 
-TreeNode* root = &n1; // n1ÀÌ root
+TreeNode* root = &n1; // n1ì´ root
 
-// ÁßÀ§ Ãâ·ÂÀ» À§ÇÑ ´ÙÀ½ °ª Ã£±â
+// ì¤‘ìœ„ ì¶œë ¥ì„ ìœ„í•œ ë‹¤ìŒ ê°’ ì°¾ê¸°
 TreeNode* find_successor(TreeNode* p)
 {
 	TreeNode* q = p->right;
@@ -34,28 +34,28 @@ TreeNode* find_successor(TreeNode* p)
 	return q;
 }
 
-// ºÎ¸ğ Ã£±â ÇÔ¼ö
+// ë¶€ëª¨ ì°¾ê¸° í•¨ìˆ˜
 TreeNode* parent(TreeNode* child)
 {
-	// ¸¸¾à child°¡ root ÀÏ °æ¿ì
+	// ë§Œì•½ childê°€ root ì¼ ê²½ìš°
 	if (child == root)
 	{
-		printf("·çÆ®ÀÔ´Ï´Ù(ºÎ¸ğ°¡ ¾ø½À´Ï´Ù)");
+		printf("ë£¨íŠ¸ì…ë‹ˆë‹¤(ë¶€ëª¨ê°€ ì—†ìŠµë‹ˆë‹¤)");
 		return 0;
 	}
 
-	// child°¡ root°¡ ¾Æ´Ñ °æ¿ì ºÎ¸ğ Ã£±â ½ÇÇà
+	// childê°€ rootê°€ ì•„ë‹Œ ê²½ìš° ë¶€ëª¨ ì°¾ê¸° ì‹¤í–‰
 
 	TreeNode* q = child->right;
 
-	// childÀÇ right °ªÀÌ Thread ³ëµå ÀÏ °æ¿ì
+	// childì˜ right ê°’ì´ Thread ë…¸ë“œ ì¼ ê²½ìš°
 	if (child->is_thread == 1) {
-		// leftÀÇ °ªÀÌ thread ÀÎ °æ¿ì (thread°¡ ºÎ¸ğ¸¦ °¡¸£Ä¡±â ¶§¹®¿¡ ¹Ù·Î Ãâ·Â)
+		// leftì˜ ê°’ì´ thread ì¸ ê²½ìš° (threadê°€ ë¶€ëª¨ë¥¼ ê°€ë¥´ì¹˜ê¸° ë•Œë¬¸ì— ë°”ë¡œ ì¶œë ¥)
 		if (q->left->data == child->data) {
 			printf("%d", q->data);
 		}
 
-		// rightÀÌ °ªÀÌ thread ÀÎ °æ¿ì (thread°¡ ºÎ¸ğÀÇ ºÎ¸ğ¸¦ °¡¸£Ä¡±â ¶§¹®¿¡ ÇÑ¹ø ³»·Á¿Í¼­ Ãâ·Â)
+		// rightì´ ê°’ì´ thread ì¸ ê²½ìš° (threadê°€ ë¶€ëª¨ì˜ ë¶€ëª¨ë¥¼ ê°€ë¥´ì¹˜ê¸° ë•Œë¬¸ì— í•œë²ˆ ë‚´ë ¤ì™€ì„œ ì¶œë ¥)
 		else if (q->left->data != child->data) {
 			printf("%d", q->left->data);
 		}
@@ -65,7 +65,7 @@ TreeNode* parent(TreeNode* child)
 
 }
 
-// ½º·¹µå ÀÌÁøÆ®¸® Ãâ·Â
+// ìŠ¤ë ˆë“œ ì´ì§„íŠ¸ë¦¬ ì¶œë ¥
 void thread_inorder(TreeNode* t)
 {
 	TreeNode* q;
@@ -79,7 +79,7 @@ void thread_inorder(TreeNode* t)
 
 int main()
 {
-	// thread ¿¬°áÇØÁÖ±â
+	// thread ì—°ê²°í•´ì£¼ê¸°
 	n4.right = &n3;
 	n4.is_thread = 1;
 
@@ -95,20 +95,20 @@ int main()
 	n10.right = &n9;
 	n10.is_thread = 1;
 
-	printf("1. ÁßÀ§ ¼øÈ¸ °á°ú\n");
+	printf("1. ì¤‘ìœ„ ìˆœíšŒ ê²°ê³¼\n");
 	thread_inorder(root);
 
 	printf("\n");
 
-	printf("2. Node 4ÀÇ ºÎ¸ğ : ");
+	printf("2. Node 4ì˜ ë¶€ëª¨ : ");
 	parent(&n4);
 	printf("\n");
 
-	printf("3. Node 5ÀÇ ºÎ¸ğ : ");
+	printf("3. Node 5ì˜ ë¶€ëª¨ : ");
 	parent(&n5);
 	printf("\n");
 
-	printf("4. Node 6ÀÇ ºÎ¸ğ : ");
+	printf("4. Node 6ì˜ ë¶€ëª¨ : ");
 	parent(&n6);
 	printf("\n");
 
